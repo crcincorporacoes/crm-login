@@ -94,6 +94,21 @@ teste no Supabase, e testar o fluxo completo (login certo, login errado,
 esqueci senha, logout, acesso negado sem sessão) no navegador antes de
 considerar pronto.
 
+## Segurança de dados (RLS)
+
+Hoje **não há necessidade de Row Level Security (RLS)**: o projeto não cria
+nenhuma tabela customizada no Postgres. Os usuários vivem apenas em
+`auth.users`, tabela interna do Supabase que não é exposta pela API pública
+(PostgREST) — o acesso só acontece pelos métodos de auth
+(`signInWithPassword`, `getUser()`, etc.), que já são seguros por padrão.
+
+**Atenção para o futuro:** assim que o CRM ganhar tabelas de dados reais
+(contatos, negócios, tarefas), o Supabase expõe qualquer tabela nova pela
+API por padrão. Nesse momento, **RLS passa a ser obrigatório** em cada
+tabela nova — sem uma policy, um usuário autenticado poderia ler ou editar
+dados de qualquer outro usuário/empresa. Isso deve ser tratado na spec da
+próxima feature (as tabelas de CRM), não neste projeto.
+
 ## Fora de escopo (por ora)
 
 - Autocadastro público de usuários.
@@ -101,3 +116,4 @@ considerar pronto.
 - Conteúdo real de CRM (contatos, negócios, tarefas) — apenas a casca de
   autenticação e um dashboard placeholder.
 - Testes automatizados.
+- Políticas de RLS (não há tabelas customizadas ainda — ver seção acima).

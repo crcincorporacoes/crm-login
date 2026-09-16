@@ -10,3 +10,13 @@ export function getSupabaseEnv() {
 
   return { url, anonKey }
 }
+
+export function getSupabaseServiceRoleKey() {
+  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+
+  if (!serviceRoleKey) {
+    throw new Error('Supabase não configurado: defina SUPABASE_SERVICE_ROLE_KEY em .env.local')
+  }
+
+  return serviceRoleKey
+}

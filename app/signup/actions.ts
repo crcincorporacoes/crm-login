@@ -2,6 +2,7 @@
 
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/admin'
 import { isValidCPF, normalizeCPF } from '@/lib/validation/cpf'
 
 export async function signup(formData: FormData) {
@@ -34,9 +35,11 @@ export async function signup(formData: FormData) {
     redirect(`/signup?error=${encodeURIComponent(generic)}`)
   }
 
-  // Se a inserção do perfil falhar (ex.: CPF duplicado), o usuário criado em
-  // auth.users fica sem perfil — aceito por ora, ver spec "Fora de escopo".
-  const { error: profileError } = await supabase.from('profiles').insert({
+  // O signUp ainda não gera sessão (confirmação de email obrigatória), então o
+  // insert do perfil precisa do client administrativo para não esbarrar no RLS
+  // que exige auth.uid() = id.
+  const adminClient = createAdminClient()
+  const { error: profileError } = await adminClient.from('profiles').insert({
     id: data.user.id,
     name,
     cpf,

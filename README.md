@@ -34,6 +34,8 @@ Não há autocadastro. Crie contas de duas formas:
 - `/forgot-password` — solicitar redefinição de senha
 - `/reset-password` — definir nova senha (via link do email)
 - `/dashboard` — área protegida (redireciona para `/login` sem sessão)
+- `/signup` — cadastro de cliente/lead (nome, CPF, data de nascimento, telefone, email, senha)
+- `/portal` — área do cliente (redireciona para `/login` sem sessão, ou para `/dashboard` se a conta for de equipe)
 
 ## Segurança de dados (RLS)
 
@@ -41,3 +43,13 @@ Este projeto não cria tabelas customizadas no Postgres — apenas usa
 `auth.users`, gerenciada internamente pelo Supabase. Ao adicionar tabelas
 reais do CRM (contatos, negócios, etc.) em uma feature futura, ative Row
 Level Security em cada uma delas antes de expor dados.
+
+## Dois tipos de conta
+
+- **Equipe**: criada manualmente (painel do Supabase ou script CLI), acessa `/dashboard`.
+- **Cliente/lead**: se autocadastra em `/signup`, acessa `/portal`.
+
+A distinção é implícita: contas de cliente têm uma linha na tabela `profiles`
+(criada durante o cadastro); contas de equipe não têm. Não existe uma coluna
+`role` — se um terceiro tipo de conta for necessário no futuro, essa decisão
+deve ser revisitada.

@@ -1,15 +1,22 @@
 # CRM Login
 
 Sistema de login (email/senha) protegendo o acesso a um dashboard de CRM.
-Next.js 15 + TypeScript + Supabase Auth.
+Next.js 16 + TypeScript + Supabase Auth.
 
 ## Configuração
 
 1. `npm install`
 2. Crie um projeto no [Supabase](https://supabase.com) (gratuito).
 3. Copie `.env.example` para `.env.local` e preencha com as chaves do seu
-   projeto Supabase (Project Settings → API).
-4. `npm run dev` e acesse `http://localhost:3000`.
+   projeto Supabase (Project Settings → API). A variável `NEXT_PUBLIC_SITE_URL`
+   é usada para montar a URL de redirecionamento do link de redefinição de
+   senha enviado por email — em desenvolvimento, deixe como
+   `http://localhost:3000`.
+4. No painel do Supabase, vá em Authentication → URL Configuration →
+   Redirect URLs e adicione `http://localhost:3000/**` (e, depois do deploy,
+   a URL de produção equivalente). Sem isso, o link de redefinição de senha
+   por email não funciona corretamente.
+5. `npm run dev` e acesse `http://localhost:3000`.
 
 ## Criando usuários
 

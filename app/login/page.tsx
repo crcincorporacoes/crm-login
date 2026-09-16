@@ -23,7 +23,7 @@ export default async function LoginPage({
         <button type="submit">Entrar</button>
       </form>
       <p>
-        <a href="/forgot-password">Esqueci minha senha</a>
+        <a href="/forgot-password" style={{ color: '#0645ad', textDecoration: 'underline' }}>Esqueci minha senha</a>
       </p>
     </main>
   )

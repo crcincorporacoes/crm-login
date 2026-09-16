@@ -23,7 +23,7 @@ export default async function ForgotPasswordPage({
         </form>
       )}
       <p>
-        <a href="/login">Voltar ao login</a>
+        <a href="/login" style={{ color: '#0645ad', textDecoration: 'underline' }}>Voltar ao login</a>
       </p>
     </main>
   )

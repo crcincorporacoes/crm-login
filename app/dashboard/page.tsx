@@ -1,5 +1,6 @@
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
+import { hasProfile } from '@/lib/supabase/profile'
 import { logout } from './actions'
 
 export default async function DashboardPage() {
@@ -10,6 +11,10 @@ export default async function DashboardPage() {
 
   if (!user) {
     redirect('/login')
+  }
+
+  if (await hasProfile(supabase, user.id)) {
+    redirect('/portal')
   }
 
   return (

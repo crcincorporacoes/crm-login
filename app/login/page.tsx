@@ -25,6 +25,9 @@ export default async function LoginPage({
       <p>
         <a href="/forgot-password" style={{ color: '#0645ad', textDecoration: 'underline' }}>Esqueci minha senha</a>
       </p>
+      <p>
+        <a href="/signup" style={{ color: '#0645ad', textDecoration: 'underline' }}>Criar conta</a>
+      </p>
     </main>
   )
 }

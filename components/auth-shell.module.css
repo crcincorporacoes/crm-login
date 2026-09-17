@@ -1,0 +1,65 @@
+.shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.brandPanel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--brand-yellow);
+  padding: 32px;
+}
+
+.logo {
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+}
+
+.formPanel {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  background: var(--brand-paper);
+  padding: 40px 24px 56px;
+}
+
+.formInner {
+  width: 100%;
+  max-width: 360px;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  color: var(--brand-ink);
+}
+
+.heading {
+  font-family: var(--font-display), var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-weight: 800;
+  font-size: 40px;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  margin: 0 0 28px;
+  color: var(--brand-ink);
+}
+
+@media (min-width: 900px) {
+  .shell {
+    flex-direction: row;
+  }
+
+  .brandPanel {
+    flex: 0 0 42%;
+    padding: 48px;
+  }
+
+  .logo {
+    max-width: 320px;
+  }
+
+  .formPanel {
+    flex: 1;
+    padding: 48px;
+  }
+}

@@ -1,0 +1,86 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 14px;
+  color: var(--brand-ink-soft);
+}
+
+.input {
+  display: block;
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 16px;
+  font-family: inherit;
+  color: var(--brand-ink);
+  background: #fff;
+  border: 1px solid var(--brand-line);
+  border-radius: 0;
+}
+
+.input:focus {
+  outline: 2px solid var(--brand-yellow);
+  outline-offset: -2px;
+  border-color: var(--brand-ink);
+}
+
+.button {
+  margin-top: 4px;
+  padding: 14px 20px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: inherit;
+  color: var(--brand-yellow);
+  background: var(--brand-ink);
+  border: none;
+  cursor: pointer;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 18px 100%, 0 calc(100% - 18px));
+}
+
+.button:hover {
+  background: #000;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--brand-ink);
+  outline-offset: 3px;
+}
+
+.error {
+  margin: -8px 0 0;
+  font-size: 14px;
+  color: var(--brand-danger);
+}
+
+.notice {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--brand-ink);
+}
+
+.links {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.links a {
+  color: var(--brand-ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.links a:hover {
+  text-decoration-thickness: 2px;
+}

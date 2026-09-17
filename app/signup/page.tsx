@@ -1,8 +1,10 @@
 import type { Metadata } from 'next'
+import { AuthShell } from '@/components/auth-shell'
+import formStyles from '@/components/auth-form.module.css'
 import { signup } from './actions'
 
 export const metadata: Metadata = {
-  title: 'CRM — Criar conta',
+  title: 'CRC Incorporações — Criar conta',
 }
 
 export default async function SignupPage({
@@ -13,43 +15,70 @@ export default async function SignupPage({
   const { error, sent } = await searchParams
 
   return (
-    <main style={{ maxWidth: 360, margin: '80px auto', fontFamily: 'sans-serif' }}>
-      <h1>Criar conta</h1>
+    <AuthShell title="Criar conta">
       {sent ? (
-        <p>Confirme seu email para ativar sua conta.</p>
+        <p className={formStyles.notice}>Confirme seu email para ativar sua conta.</p>
       ) : (
-        <form action={signup} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-          <label>
-            Nome
-            <input name="name" type="text" required style={{ display: 'block', width: '100%' }} />
-          </label>
-          <label>
-            CPF
-            <input name="cpf" type="text" required placeholder="000.000.000-00" style={{ display: 'block', width: '100%' }} />
-          </label>
-          <label>
-            Data de nascimento
-            <input name="birthDate" type="date" required style={{ display: 'block', width: '100%' }} />
-          </label>
-          <label>
-            Telefone
-            <input name="phone" type="tel" required style={{ display: 'block', width: '100%' }} />
-          </label>
-          <label>
-            Email
-            <input name="email" type="email" required style={{ display: 'block', width: '100%' }} />
-          </label>
-          <label>
-            Senha
-            <input name="password" type="password" required minLength={6} style={{ display: 'block', width: '100%' }} />
-          </label>
-          {error && <p style={{ color: 'red' }}>{error}</p>}
-          <button type="submit">Criar conta</button>
+        <form action={signup} className={formStyles.form}>
+          <div className={formStyles.field}>
+            <label className={formStyles.label} htmlFor="name">
+              Nome
+            </label>
+            <input id="name" name="name" type="text" required className={formStyles.input} />
+          </div>
+          <div className={formStyles.field}>
+            <label className={formStyles.label} htmlFor="cpf">
+              CPF
+            </label>
+            <input
+              id="cpf"
+              name="cpf"
+              type="text"
+              required
+              placeholder="000.000.000-00"
+              className={formStyles.input}
+            />
+          </div>
+          <div className={formStyles.field}>
+            <label className={formStyles.label} htmlFor="birthDate">
+              Data de nascimento
+            </label>
+            <input id="birthDate" name="birthDate" type="date" required className={formStyles.input} />
+          </div>
+          <div className={formStyles.field}>
+            <label className={formStyles.label} htmlFor="phone">
+              Telefone
+            </label>
+            <input id="phone" name="phone" type="tel" required className={formStyles.input} />
+          </div>
+          <div className={formStyles.field}>
+            <label className={formStyles.label} htmlFor="email">
+              Email
+            </label>
+            <input id="email" name="email" type="email" required className={formStyles.input} />
+          </div>
+          <div className={formStyles.field}>
+            <label className={formStyles.label} htmlFor="password">
+              Senha
+            </label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              required
+              minLength={6}
+              className={formStyles.input}
+            />
+          </div>
+          {error && <p className={formStyles.error}>{error}</p>}
+          <button type="submit" className={formStyles.button}>
+            Criar conta
+          </button>
         </form>
       )}
-      <p>
-        <a href="/login" style={{ color: '#0645ad', textDecoration: 'underline' }}>Já tenho conta</a>
-      </p>
-    </main>
+      <div className={formStyles.links}>
+        <a href="/login">Já tenho conta</a>
+      </div>
+    </AuthShell>
   )
 }

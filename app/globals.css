@@ -1,6 +1,13 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  --brand-yellow: #fcbd00;
+  --brand-ink: #1c1500;
+  --brand-paper: #faf7f0;
+  --brand-ink-soft: #6b6355;
+  --brand-line: #e7e2d6;
+  --brand-danger: #b3261e;
 }
 
 @media (prefers-color-scheme: dark) {

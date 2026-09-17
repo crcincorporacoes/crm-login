@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Big_Shoulders } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -12,14 +12,23 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const bigShoulders = Big_Shoulders({
+  variable: "--font-display",
+  subsets: ["latin"],
+  weight: ["700", "800"],
+});
+
 export const metadata: Metadata = {
-  title: "CRM — Entrar",
-  description: "Sistema de login do CRM",
+  title: "CRC Incorporações — Entrar",
+  description: "Portal de acesso da CRC Incorporações",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="pt-BR" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html
+      lang="pt-BR"
+      className={`${geistSans.variable} ${geistMono.variable} ${bigShoulders.variable}`}
+    >
       <body>{children}</body>
     </html>
   );

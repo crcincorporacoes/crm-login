@@ -1,4 +1,9 @@
+import type { Metadata } from 'next'
 import { signup } from './actions'
+
+export const metadata: Metadata = {
+  title: 'CRM — Criar conta',
+}
 
 export default async function SignupPage({
   searchParams,

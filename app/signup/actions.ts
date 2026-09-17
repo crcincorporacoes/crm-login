@@ -31,7 +31,13 @@ export async function signup(formData: FormData) {
     },
   })
 
-  if (signUpError || !data.user) {
+  // Quando o email já pertence a outra conta, o Supabase não retorna erro
+  // (proteção contra enumeração de usuários) — devolve um usuário "fake" sem
+  // identidades. Tratamos isso como falha explícita em vez de deixar cair na
+  // violação de foreign key do insert de perfil.
+  const isFakeUser = (data.user?.identities?.length ?? 0) === 0
+
+  if (signUpError || !data.user || isFakeUser) {
     redirect(`/signup?error=${encodeURIComponent(generic)}`)
   }
 

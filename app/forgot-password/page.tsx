@@ -1,4 +1,11 @@
+import type { Metadata } from 'next'
+import { AuthShell } from '@/components/auth-shell'
+import formStyles from '@/components/auth-form.module.css'
 import { requestPasswordReset } from './actions'
+
+export const metadata: Metadata = {
+  title: 'CRC Incorporações — Esqueci minha senha',
+}
 
 export default async function ForgotPasswordPage({
   searchParams,
@@ -8,23 +15,28 @@ export default async function ForgotPasswordPage({
   const { error, sent } = await searchParams
 
   return (
-    <main style={{ maxWidth: 360, margin: '80px auto', fontFamily: 'sans-serif' }}>
-      <h1>Esqueci minha senha</h1>
+    <AuthShell title="Esqueci minha senha">
       {sent ? (
-        <p>Se esse email existir, enviamos um link de redefinição de senha.</p>
+        <p className={formStyles.notice}>
+          Se esse email existir, enviamos um link de redefinição de senha.
+        </p>
       ) : (
-        <form action={requestPasswordReset} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-          <label>
-            Email
-            <input name="email" type="email" required style={{ display: 'block', width: '100%' }} />
-          </label>
-          {error && <p style={{ color: 'red' }}>{error}</p>}
-          <button type="submit">Enviar link</button>
+        <form action={requestPasswordReset} className={formStyles.form}>
+          <div className={formStyles.field}>
+            <label className={formStyles.label} htmlFor="email">
+              Email
+            </label>
+            <input id="email" name="email" type="email" required className={formStyles.input} />
+          </div>
+          {error && <p className={formStyles.error}>{error}</p>}
+          <button type="submit" className={formStyles.button}>
+            Enviar link
+          </button>
         </form>
       )}
-      <p>
-        <a href="/login" style={{ color: '#0645ad', textDecoration: 'underline' }}>Voltar ao login</a>
-      </p>
-    </main>
+      <div className={formStyles.links}>
+        <a href="/login">Voltar ao login</a>
+      </div>
+    </AuthShell>
   )
 }

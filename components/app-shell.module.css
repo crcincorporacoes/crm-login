@@ -1,0 +1,58 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: var(--brand-yellow);
+  padding: 16px 24px;
+}
+
+.logo {
+  height: 28px;
+  width: auto;
+}
+
+.logoutButton {
+  padding: 8px 18px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: inherit;
+  color: var(--brand-ink);
+  background: transparent;
+  border: 1px solid var(--brand-ink);
+  cursor: pointer;
+}
+
+.logoutButton:hover {
+  background: var(--brand-ink);
+  color: var(--brand-yellow);
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  background: var(--brand-paper);
+  padding: 64px 24px;
+}
+
+.content {
+  width: 100%;
+  max-width: 480px;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+.heading {
+  font-family: var(--font-display), var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-weight: 800;
+  font-size: 32px;
+  line-height: 1.1;
+  margin: 0;
+  color: var(--brand-ink);
+}

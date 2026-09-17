@@ -1,4 +1,11 @@
+import type { Metadata } from 'next'
+import { AuthShell } from '@/components/auth-shell'
+import formStyles from '@/components/auth-form.module.css'
 import { updatePassword } from './actions'
+
+export const metadata: Metadata = {
+  title: 'CRC Incorporações — Nova senha',
+}
 
 export default async function ResetPasswordPage({
   searchParams,
@@ -8,16 +15,26 @@ export default async function ResetPasswordPage({
   const { error } = await searchParams
 
   return (
-    <main style={{ maxWidth: 360, margin: '80px auto', fontFamily: 'sans-serif' }}>
-      <h1>Nova senha</h1>
-      <form action={updatePassword} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-        <label>
-          Nova senha
-          <input name="password" type="password" required minLength={6} style={{ display: 'block', width: '100%' }} />
-        </label>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        <button type="submit">Salvar nova senha</button>
+    <AuthShell title="Nova senha">
+      <form action={updatePassword} className={formStyles.form}>
+        <div className={formStyles.field}>
+          <label className={formStyles.label} htmlFor="password">
+            Nova senha
+          </label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            required
+            minLength={6}
+            className={formStyles.input}
+          />
+        </div>
+        {error && <p className={formStyles.error}>{error}</p>}
+        <button type="submit" className={formStyles.button}>
+          Salvar nova senha
+        </button>
       </form>
-    </main>
+    </AuthShell>
   )
 }

@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import crcMark from '@/public/brand/crc-mark.png'
 import { logout } from '@/lib/supabase/logout'
 import styles from './app-shell.module.css'
@@ -13,7 +14,9 @@ export function AppShell({
   return (
     <div className={styles.page}>
       <header className={styles.header}>
-        <Image src={crcMark} alt="CRC Incorporações" className={styles.logo} priority />
+        <Link href="/login" aria-label="Ir para o login">
+          <Image src={crcMark} alt="CRC Incorporações" className={styles.logo} priority />
+        </Link>
         <form action={logout}>
           <button type="submit" className={styles.logoutButton}>
             Sair

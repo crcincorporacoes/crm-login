@@ -8,7 +8,7 @@ export function AppShell({
   heading,
   children,
 }: {
-  heading: string
+  heading?: string
   children?: React.ReactNode
 }) {
   return (
@@ -25,7 +25,7 @@ export function AppShell({
       </header>
       <main className={styles.main}>
         <div className={styles.content}>
-          <h1 className={styles.heading}>{heading}</h1>
+          {heading ? <h1 className={styles.heading}>{heading}</h1> : null}
           {children}
         </div>
       </main>

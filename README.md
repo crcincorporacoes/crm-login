@@ -33,9 +33,9 @@ Não há autocadastro. Crie contas de duas formas:
 - `/login` — login
 - `/forgot-password` — solicitar redefinição de senha
 - `/reset-password` — definir nova senha (via link do email)
-- `/dashboard` — área protegida (redireciona para `/login` sem sessão)
+- `/dashboard` — assistente conversacional (equipe com papel atribuído; redireciona para `/login` sem sessão)
 - `/signup` — cadastro de cliente/lead (nome, CPF, data de nascimento, telefone, email, senha)
-- `/portal` — área do cliente (redireciona para `/login` sem sessão, ou para `/dashboard` se a conta for de equipe)
+- `/portal` — assistente conversacional (cliente; redireciona para `/login` sem sessão, ou para `/dashboard` se a conta for de equipe)
 
 ## Segurança de dados (RLS)
 
@@ -53,3 +53,39 @@ A distinção é implícita: contas de cliente têm uma linha na tabela `profile
 (criada durante o cadastro); contas de equipe não têm. Não existe uma coluna
 `role` — se um terceiro tipo de conta for necessário no futuro, essa decisão
 deve ser revisitada.
+
+## Assistente conversacional (Etapa 2)
+
+`/portal` (cliente) e `/dashboard` (equipe com papel atribuído) mostram um
+assistente de IA (Claude) em vez de uma tela estática. O assistente consulta
+dados através de um "tool registry" — nunca acessa banco de dados ou APIs
+externas diretamente.
+
+### Configuração
+
+- `ANTHROPIC_API_KEY`: chave da API da Anthropic (console.anthropic.com).
+- `SIENGE_API_URL` / `SIENGE_API_TOKEN`: deixe em branco por enquanto — sem
+  eles, o sistema usa dados fictícios (`lib/sienge/mock-service.ts`),
+  claramente isolados e fáceis de desativar quando a integração real
+  existir (basta preencher essas duas variáveis e implementar
+  `RealSiengeService` seguindo a interface em `lib/sienge/service.ts`).
+
+### Papéis de equipe
+
+Contas de equipe não têm nenhuma ferramenta liberada até receberem um papel:
+
+```bash
+npx tsx --env-file=.env.local scripts/assign-role.ts email@exemplo.com corretor
+```
+
+Papéis válidos: `corretor`, `gerente_comercial`, `administrador`,
+`financeiro`, `pos_venda`, `diretor`, `engenharia`. Só `corretor` tem
+ferramentas nesta etapa — os demais ficam com a tela de "acesso ainda não
+liberado" até uma etapa futura.
+
+### Testes automatizados
+
+`npm run test` roda os testes unitários (`vitest`) de `lib/authorization`,
+`lib/sienge`, `lib/ai/message-content` e `lib/ai/tools` — as camadas que
+controlam acesso e dados financeiros. UI e integração continuam sendo
+verificadas manualmente, como no restante do projeto.

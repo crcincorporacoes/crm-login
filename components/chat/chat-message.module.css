@@ -1,0 +1,61 @@
+.row {
+  display: flex;
+  margin-bottom: 16px;
+}
+
+.rowUser {
+  justify-content: flex-end;
+}
+
+.rowAssistant {
+  justify-content: flex-start;
+}
+
+.bubble {
+  max-width: 70%;
+  padding: 12px 16px;
+  font-size: 15px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.bubbleUser {
+  background: var(--brand-ink);
+  color: var(--brand-yellow);
+}
+
+.bubbleAssistant {
+  background: #fff;
+  color: var(--brand-ink);
+  border: 1px solid var(--brand-line);
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.actionButton {
+  padding: 8px 14px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--brand-ink);
+  background: var(--brand-yellow);
+  border: none;
+  cursor: pointer;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.table th,
+.table td {
+  text-align: left;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--brand-line);
+}

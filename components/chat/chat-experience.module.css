@@ -1,0 +1,31 @@
+.page {
+  display: flex;
+  min-height: 100vh;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--brand-paper);
+}
+
+.welcomeWrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.inputWrap {
+  padding: 16px;
+  border-top: 1px solid var(--brand-line);
+  background: var(--brand-paper);
+}
+
+.welcomeInputWrap {
+  width: 100%;
+  max-width: 640px;
+  margin-top: 24px;
+}

@@ -1,0 +1,36 @@
+.sidebar {
+  width: 260px;
+  border-right: 1px solid var(--brand-line);
+  padding: 16px;
+  overflow-y: auto;
+  background: var(--brand-paper);
+}
+
+.item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 10px 12px;
+  margin-bottom: 4px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--brand-ink);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.item:hover {
+  background: #fff;
+}
+
+.item[data-active='true'] {
+  background: #fff;
+  font-weight: 700;
+}
+
+@media (max-width: 899px) {
+  .sidebar {
+    display: none;
+  }
+}

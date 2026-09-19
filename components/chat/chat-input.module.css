@@ -1,0 +1,41 @@
+.form {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+.textarea {
+  flex: 1;
+  resize: none;
+  padding: 14px 16px;
+  font-size: 16px;
+  font-family: inherit;
+  color: var(--brand-ink);
+  background: #fff;
+  border: 1px solid var(--brand-line);
+  border-radius: 0;
+  min-height: 52px;
+  max-height: 160px;
+}
+
+.textarea:focus {
+  outline: 2px solid var(--brand-yellow);
+  outline-offset: -2px;
+  border-color: var(--brand-ink);
+}
+
+.button {
+  padding: 14px 22px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: inherit;
+  color: var(--brand-yellow);
+  background: var(--brand-ink);
+  border: none;
+  cursor: pointer;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

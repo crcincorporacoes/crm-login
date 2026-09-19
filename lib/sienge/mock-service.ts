@@ -65,19 +65,19 @@ const MOCK_DOCUMENTS: SiengeDocument[] = [
 ]
 
 export class MockSiengeService implements SiengeService {
-  async getCustomer(): Promise<SiengeCustomer | null> {
+  async getCustomer(_customerId: string): Promise<SiengeCustomer | null> {
     return MOCK_CUSTOMER
   }
 
-  async getCustomerContracts(): Promise<SiengeContract[]> {
+  async getCustomerContracts(_customerId: string): Promise<SiengeContract[]> {
     return [MOCK_CONTRACT]
   }
 
-  async getCustomerInstallments(): Promise<SiengeInstallment[]> {
+  async getCustomerInstallments(_customerId: string): Promise<SiengeInstallment[]> {
     return MOCK_INSTALLMENTS
   }
 
-  async getOverdueInstallments(): Promise<SiengeInstallment[]> {
+  async getOverdueInstallments(_customerId: string): Promise<SiengeInstallment[]> {
     return MOCK_INSTALLMENTS.filter((installment) => installment.status === 'atrasada')
   }
 
@@ -85,15 +85,15 @@ export class MockSiengeService implements SiengeService {
     return MOCK_INSTALLMENTS.find((installment) => installment.id === installmentId)?.paymentSlipUrl ?? null
   }
 
-  async getProject(): Promise<SiengeProject | null> {
+  async getProject(_projectId: string): Promise<SiengeProject | null> {
     return MOCK_PROJECT
   }
 
-  async getDeliveryForecast(): Promise<string | null> {
+  async getDeliveryForecast(_projectId: string): Promise<string | null> {
     return MOCK_PROJECT.deliveryForecast
   }
 
-  async getCustomerDocuments(): Promise<SiengeDocument[]> {
+  async getCustomerDocuments(_customerId: string): Promise<SiengeDocument[]> {
     return MOCK_DOCUMENTS
   }
 
@@ -106,7 +106,7 @@ export class MockSiengeService implements SiengeService {
     })
   }
 
-  async getPriceTable(): Promise<SiengeUnit[]> {
+  async getPriceTable(_projectId: string): Promise<SiengeUnit[]> {
     return MOCK_UNITS
   }
 

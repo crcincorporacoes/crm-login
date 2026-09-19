@@ -49,10 +49,14 @@ export async function appendMessage(
     throw new Error(`Não foi possível salvar a mensagem: ${error?.message}`)
   }
 
-  await supabase
+  const { error: updateError } = await supabase
     .from('conversations')
     .update({ updated_at: new Date().toISOString() })
     .eq('id', conversationId)
+
+  if (updateError) {
+    console.error('Não foi possível atualizar updated_at da conversa:', updateError.message)
+  }
 
   return data.id as string
 }

@@ -98,7 +98,7 @@ export const financialTools: ToolDefinition[] = [
       const customerId = await getSiengeCustomerId(ctx.supabase, ctx.userId)
       if (!customerId) return NOT_FOUND
 
-      const url = await getSiengeService().getPaymentSlip(input.installmentId)
+      const url = await getSiengeService().getPaymentSlip(customerId, input.installmentId)
       if (!url) {
         return { type: 'notice', message: 'Não encontrei esse boleto no sistema.' }
       }

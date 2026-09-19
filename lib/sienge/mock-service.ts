@@ -81,7 +81,10 @@ export class MockSiengeService implements SiengeService {
     return MOCK_INSTALLMENTS.filter((installment) => installment.status === 'atrasada')
   }
 
-  async getPaymentSlip(installmentId: string): Promise<string | null> {
+  // Uma implementação real DEVE verificar que a parcela pertence a
+  // customerId antes de retornar o boleto — o mock não tem como simular
+  // isso porque só existe um cliente fictício.
+  async getPaymentSlip(_customerId: string, installmentId: string): Promise<string | null> {
     return MOCK_INSTALLMENTS.find((installment) => installment.id === installmentId)?.paymentSlipUrl ?? null
   }
 

@@ -26,6 +26,6 @@ describe('MockSiengeService', () => {
   })
 
   it('getPaymentSlip retorna null para id desconhecido', async () => {
-    expect(await service.getPaymentSlip('inexistente')).toBeNull()
+    expect(await service.getPaymentSlip('any', 'inexistente')).toBeNull()
   })
 })

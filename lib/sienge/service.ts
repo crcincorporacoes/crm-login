@@ -17,7 +17,7 @@ export interface SiengeService {
   getCustomerContracts(customerId: string): Promise<SiengeContract[]>
   getCustomerInstallments(customerId: string): Promise<SiengeInstallment[]>
   getOverdueInstallments(customerId: string): Promise<SiengeInstallment[]>
-  getPaymentSlip(installmentId: string): Promise<string | null>
+  getPaymentSlip(customerId: string, installmentId: string): Promise<string | null>
   getProject(projectId: string): Promise<SiengeProject | null>
   getDeliveryForecast(projectId: string): Promise<string | null>
   getCustomerDocuments(customerId: string): Promise<SiengeDocument[]>

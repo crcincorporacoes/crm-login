@@ -75,7 +75,8 @@ export class AnthropicProvider implements AIProvider {
             }
             await messageStream.finalMessage()
           }
-        } catch {
+        } catch (error) {
+          console.error('Falha no streaming do Anthropic', error)
           if (finalText.length === 0) {
             finalText = GENERIC_ERROR_TEXT
             controller.enqueue(encoder.encode(GENERIC_ERROR_TEXT))

@@ -13,6 +13,7 @@ import type {
 // documentação da API estiver disponível (ver config.ts).
 
 export const DEFAULT_MOCK_PROJECT_ID = 'proj-1'
+export const DEFAULT_MOCK_CUSTOMER_ID = 'mock-customer'
 
 const MOCK_PROJECT: SiengeProject = {
   id: DEFAULT_MOCK_PROJECT_ID,
@@ -28,7 +29,7 @@ const MOCK_UNITS: SiengeUnit[] = [
   { id: 'unit-b603', code: 'B-603', tower: 'B', floor: 6, areaM2: 55, bedrooms: 2, price: 480000, status: 'disponivel' },
 ]
 
-const MOCK_CUSTOMER: SiengeCustomer = { id: 'mock-customer', name: 'Felipe' }
+const MOCK_CUSTOMER: SiengeCustomer = { id: DEFAULT_MOCK_CUSTOMER_ID, name: 'Felipe' }
 
 const MOCK_CONTRACT: SiengeContract = {
   id: 'contract-1',

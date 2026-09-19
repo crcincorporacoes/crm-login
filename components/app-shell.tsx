@@ -6,9 +6,11 @@ import styles from './app-shell.module.css'
 
 export function AppShell({
   heading,
+  fullBleed,
   children,
 }: {
   heading?: string
+  fullBleed?: boolean
   children?: React.ReactNode
 }) {
   return (
@@ -23,9 +25,9 @@ export function AppShell({
           </button>
         </form>
       </header>
-      <main className={styles.main}>
-        <div className={styles.content}>
-          {heading ? <h1 className={styles.heading}>{heading}</h1> : null}
+      <main className={fullBleed ? styles.mainFullBleed : styles.main}>
+        <div className={fullBleed ? styles.contentFullBleed : styles.content}>
+          {!fullBleed && heading ? <h1 className={styles.heading}>{heading}</h1> : null}
           {children}
         </div>
       </main>

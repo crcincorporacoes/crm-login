@@ -61,6 +61,14 @@ export function useChat(initial?: { conversationId?: string; messages?: ChatMess
           )
         )
       }
+    } catch {
+      setMessages((prev) =>
+        prev.map((message) =>
+          message.id === assistantId
+            ? { ...message, content: { type: 'notice', message: 'Não consegui responder agora. Tente novamente em alguns instantes.' } as MessageContent }
+            : message
+        )
+      )
     } finally {
       setIsStreaming(false)
     }

@@ -42,7 +42,7 @@ export function ChatExperience({
       <div className={styles.main}>
         {messages.length > 0 ? (
           <>
-            <ChatMessages messages={messages} />
+            <ChatMessages messages={messages} isStreaming={isStreaming} />
             <div className={styles.inputWrap}>
               <ChatInput onSend={sendMessage} disabled={isStreaming} />
             </div>

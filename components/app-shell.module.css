@@ -1,5 +1,5 @@
 .page {
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
 }
@@ -42,9 +42,22 @@
   padding: 64px 24px;
 }
 
+.mainFullBleed {
+  flex: 1;
+  display: flex;
+  padding: 0;
+  min-height: 0;
+  background: var(--brand-paper);
+}
+
 .content {
   width: 100%;
   max-width: 480px;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+.contentFullBleed {
+  width: 100%;
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
 

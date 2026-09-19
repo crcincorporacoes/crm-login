@@ -18,11 +18,12 @@ export interface StoredMessage {
 export async function createConversation(
   supabase: SupabaseClient,
   userId: string,
-  role: Role
+  role: Role,
+  title?: string
 ): Promise<string> {
   const { data, error } = await supabase
     .from('conversations')
-    .insert({ user_id: userId, role_at_time: role })
+    .insert({ user_id: userId, role_at_time: role, title: title ?? null })
     .select('id')
     .single()
 

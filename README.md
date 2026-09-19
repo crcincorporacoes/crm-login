@@ -39,10 +39,11 @@ Não há autocadastro. Crie contas de duas formas:
 
 ## Segurança de dados (RLS)
 
-Este projeto não cria tabelas customizadas no Postgres — apenas usa
-`auth.users`, gerenciada internamente pelo Supabase. Ao adicionar tabelas
-reais do CRM (contatos, negócios, etc.) em uma feature futura, ative Row
-Level Security em cada uma delas antes de expor dados.
+Além de `auth.users` (gerenciada internamente pelo Supabase), este projeto
+cria seis tabelas customizadas: `profiles`, `team_members`, `conversations`,
+`messages`, `tool_executions` e `audit_logs` — todas com Row Level Security
+ativa (ver `supabase/migrations/`). Ao adicionar novas tabelas do CRM em uma
+feature futura, ative RLS nelas também antes de expor dados.
 
 ## Dois tipos de conta
 
@@ -50,9 +51,10 @@ Level Security em cada uma delas antes de expor dados.
 - **Cliente/lead**: se autocadastra em `/signup`, acessa `/portal`.
 
 A distinção é implícita: contas de cliente têm uma linha na tabela `profiles`
-(criada durante o cadastro); contas de equipe não têm. Não existe uma coluna
-`role` — se um terceiro tipo de conta for necessário no futuro, essa decisão
-deve ser revisitada.
+(criada durante o cadastro); contas de equipe não têm. `team_members.role` é
+a primeira coluna de papel explícito do projeto, mas é escopada só a contas
+de equipe (ver seção "Papéis de equipe" abaixo) — `profiles` continua sem
+coluna de papel, de propósito, já que hoje só existe um tipo de cliente.
 
 ## Assistente conversacional (Etapa 2)
 
@@ -63,6 +65,10 @@ externas diretamente.
 
 ### Configuração
 
+- Antes de tudo, rode as migrações em `supabase/migrations/` (`0001` a
+  `0005`, nessa ordem — há dependência entre elas). No painel do Supabase:
+  **SQL Editor** → **New query** → colar o conteúdo de `0001_create_profiles.sql`
+  → **Run** → repetir para `0002`, `0003`, `0004` e `0005`.
 - `ANTHROPIC_API_KEY`: chave da API da Anthropic (console.anthropic.com).
 - `SIENGE_API_URL` / `SIENGE_API_TOKEN`: deixe em branco por enquanto — sem
   eles, o sistema usa dados fictícios (`lib/sienge/mock-service.ts`),

@@ -46,8 +46,9 @@ export default async function DashboardPage({
     : []
 
   return (
-    <AppShell heading="">
+    <AppShell heading="" fullBleed>
       <ChatExperience
+        key={conversationId ?? 'new'}
         role={role === 'corretor' ? 'corretor' : 'client'}
         firstName={firstName}
         conversations={conversations}

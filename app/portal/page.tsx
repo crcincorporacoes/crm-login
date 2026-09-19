@@ -41,8 +41,9 @@ export default async function PortalPage({
     : []
 
   return (
-    <AppShell heading="">
+    <AppShell heading="" fullBleed>
       <ChatExperience
+        key={conversationId ?? 'new'}
         role="client"
         firstName={firstName}
         conversations={conversations}
